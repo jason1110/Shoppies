@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from "react";
+const baseURL = 'http://www.omdbapi.com/?i=tt3896198&apikey=583bc72a&'
 
-function App() {
+export function App() {
+
+const [movies, setMovies] = useState([]);
+
+const getMovieList = () => {
+  fetch(baseURL)
+  .then((response) => response.json())
+  .then((results) => console.log(results))
+}
+
+useEffect(() => {
+  getMovieList();
+}, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Movies</h1>
     </div>
   );
 }
