@@ -4,6 +4,7 @@ import { React, useState, useEffect } from "react";
 import SearchBar from './components/searchBar/SearchBar'
 import FilteredMovies from "./containers/FilteredMovies";
 import Nominations from "./containers/Nominations"
+import { useAlert } from 'react-alert'
 import './Main.css'
 const baseURL = 'http://www.omdbapi.com'
 
@@ -13,6 +14,7 @@ export default function Main() {
     const [movies, setMovies] = useState([]);
     const [search, setSearch] = useState('')
     const [nominated, setNominated] = useState([])
+    const alert = useAlert()
 
     const getMovieList = () => {
         fetch(`${baseURL}/?s=${search}&apikey=583bc72a&`)
@@ -38,10 +40,13 @@ export default function Main() {
     }
 
     const addNomination = (nomination) => {
-        let chosenMovie = filteredMovies.Search.find(myMovie => nomination.imdbID === myMovie.imdbID)
-                setNominated(nominated.concat(nomination))
-                // setIsNominated(!isNominated)
-        }
+        if (nominated.length === 5) {
+            return alert.show('Sorry you can only have five nominations at a time')
+        } else {
+            let chosenMovie = filteredMovies.Search.find(myMovie => nomination.imdbID === myMovie.imdbID)
+                    setNominated(nominated.concat(nomination))
+        }        // setIsNominated(!isNominated)
+    }
 
     const toggleNominations = () => {
         if (search) {
