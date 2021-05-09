@@ -3,9 +3,29 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
-    width: 100vw;
+    width: 75%;
+    background-color: azure;
+    margin: 2rem;
+    box-shadow: 5px 5px 5px rgb(106, 105, 105);
+    font-size: 20px;
+    border-radius: 10px;
   }
   
   input#search {
-    width: 50%;
+    width: 96%;
+    height: 30px;
+    border-radius: 5px;
+    border-width: 1px;
+    font-size: 20px;
+    background-image: url(https://cdn2.hubspot.net/hubfs/4004166/bioticresearch_website_assets/images/search_icon.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 40px;
+    background-color: #fff;
+    border: 1px solid #000;
+    box-shadow: none;    
+  }
+
+  label {
+      padding-left: 10px;
   }

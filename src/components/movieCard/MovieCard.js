@@ -1,49 +1,66 @@
-import { React, useState, useEffect } from "react";
+import React, { Component } from "react";
 import './MovieCard.css'
 
-export default function MovieCard(props) {
+export default class MovieCard extends Component {
 
-    const [isNominated, setIsNominated] = useState(false)
+    constructor() {
+        super();
+        this.state = {
+          disable: false,
+        };
+    
+        this.handleClick = this.handleClick.bind(this);
+        this.toggleNominateButton = this.toggleNominateButton.bind(this)
+      }
+    
 
-    const handleClick = () => {
-        if(props.nominate){
-            props.nominate(props.movie)
-            console.log(isNominated)
-        } 
-        else {
-            console.log(isNominated)
-            props.remove(props.movie)
+    handleClick = () => {
+        if(this.props.nominate){   
+            this.props.nominate(this.props.movie);
+            this.toggleNominateButton();       
+            console.log( {nominate: this.state.disable, movie: this.props.movie} )
+        } else {
+            this.props.remove(this.props.imdbID);
+            this.toggleNominateButton();
+            console.log( {remove: this.state.disable, movie: this.props.movie})
+            
         }
     }
-    
-    const toggleNominateButton = () => {
-        setIsNominated(!isNominated)
+
+    toggleNominateButton = () => {
+       if(this.props.imdbID) 
+        this.setState({ disable: !this.state.disable});
     }
+    
+    // handleRemove = () => {
+    //     this.props.remove(this.props.imdbID)
+    //     this.toggleNominateButton.bind(this)
+    // }
+    render() {
+        console.log(this.props.nominated)
+        return (
+            <div className='movie-card-result'>
+                <img className='movie-poster' src={this.props.poster} alt='movie poster'/>
+                {this.props.title}
+                ({this.props.year})
+                {this.props.nominated 
+                ? 
+                <button name='remove'
+                onClick={ this.handleClick }
+                >
+                Remove
+                </button>
+                :<button 
+                className='nominate-button' 
+                name='nominate' 
+                onClick={ this.handleClick }
+                disabled={ this.props.nominated && !this.props.nominated.find(this.props.movie.imdbID === this.props.nominated.imdbID) ? true : false }
+                >
+                Nominate
+                </button>
+                }
 
-    return (
-        <div className='movie-card-result'>
-            {props.title}
-            ({props.year})
-            {props.nominate 
-            ? <button 
-            className={isNominated
-                ? 'nominate-button-deactivated'
-                : 'nominate-button-active' 
-            }
-            name='nominate' 
-            onClick={ handleClick }
-            disabled={isNominated} 
-            >
-            Nominate
-            </button>
-            : <button name='remove'
-            onClick={ handleClick }
-            >
-            Remove
-            </button>
-
-            }
-
-        </div>
-    )
+            </div>
+        )
+    }
 }

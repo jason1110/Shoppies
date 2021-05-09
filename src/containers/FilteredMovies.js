@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import MovieCard from '../components/movieCard/MovieCard'
+import './Containers.css'
 
 export default function FilteredMovies(props) {
 
@@ -10,18 +11,21 @@ export default function FilteredMovies(props) {
                     movie={movie}
                     title={movie.Title} 
                     year={movie.Year} 
-                    key={movie.index} 
+                    key={movie.imdbID}
+                    poster={movie.Poster}
+                    imdbID={movie.imdbID}
                     nominate={props.addNominations}
-                    // nominated={isNominated}
+                    isNominated={props.isNominated}
+                    setIsNominated={props.setIsNominated}      
                 />
             )
         }
     }
 
-    useEffect( eachMovie, [props.filteredMovies] )
+    useEffect( eachMovie, [props.filteredMovies, props.addNominations, props.isNominated, props.setIsNominated] )
 
     return (
-        <div>
+        <div className='container' id='filtered-movies-container'>
             {props.toggleSearch()}
             {eachMovie()}
         </div>

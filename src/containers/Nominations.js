@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import MovieCard from '../components/movieCard/MovieCard'
+import './Containers.css'
 
 export default function Nominations(props) {
 
@@ -9,28 +10,30 @@ export default function Nominations(props) {
                 <MovieCard 
                     movie={movie}
                     title={movie.Title} 
-                    year={movie.Year} 
-                    key={movie.index} 
+                    year={movie.Year}
+                    poster={movie.Poster}
+                    key={movie.imdbID}
+                    imdbID={movie.imdbID}
                     remove={props.remove}
+                    nominated={props.nominated}
+                    isNominated={props.isNominated}
+                    setIsNominated={props.setIsNominated}
                 />
             )
         }
     }
 
+    useEffect( showNominations, [props.nominated, props.isNominated, props.remove, props.setIsNominated] )
+
     return (
         <>
         {(props.nominated !== [])
-        ? <div>
+        ? <div className='container' id='nominations-container'>
         {props.toggleNominations()}
         {showNominations()}
         </div>
-        : ''    
+        :null 
         }
         </>
     )
-    //     <div>
-    //         {props.toggleNominations()}
-    //         {(props.nominated != []) ? showNominations() : ''}
-    //     </div>
-    // )
 }

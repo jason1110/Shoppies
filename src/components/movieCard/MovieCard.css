@@ -1,7 +1,21 @@
 .movie-card-result {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    background-color: aquamarine;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #008060;
+    box-shadow: 5px 5px 5px rgb(106, 105, 105);
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1.5px;
+    margin: 20px 20px 20px 0px;
+    padding: 1em;
+    width: 90%;
+    height: 15vh;
+}
+
+.movie-poster {
+   display: flex;
+   max-height: 8em;
+   padding: 10px;
 }
