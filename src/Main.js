@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useCallback } from "react";
+import { React, useState, useEffect } from "react";
 import SearchBar from './components/searchBar/SearchBar'
 import FilteredMovies from "./containers/FilteredMovies";
 import Nominations from "./containers/Nominations"
@@ -44,9 +44,9 @@ export default function Main() {
         } else {
             setNominated([...nominated, nomination])
             let chosenMovie = filteredMovies.Search.find(myMovie => nomination.key === myMovie.imdbID)
-            if(chosenMovie) {  
-                setIsNominated(true) 
-            } 
+            // if(chosenMovie) {  
+                
+            // } 
         }
     }
 
@@ -59,12 +59,10 @@ export default function Main() {
     const removeNomination = (imdbID) =>  {
         console.log(nominated)
         setNominated(nominated.filter(removeMovie => removeMovie.imdbID !== imdbID))
-        if (nominated.find(myMovie => imdbID === myMovie.imdbID)){
-            setIsNominated(false)
-        }
+        // if (nominated.find(myMovie => imdbID === myMovie.imdbID)){
+        //     setIsNominated(isNominated)
+        // }
     }
-
-    console.log(nominated)
 
     return (
         <div className='main'>

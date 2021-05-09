@@ -1,54 +1,43 @@
-import React, { Component } from "react";
+import React, {  useState, useEffect } from "react";
 import './MovieCard.css'
 
-export default class MovieCard extends Component {
+export default function MovieCard(props) {
 
-    constructor() {
-        super();
-        this.state = {
-            disable: false,
-        };
+    const [isNominated, setIsNominated] = useState(false)
     
-        this.handleClick = this.handleClick.bind(this);
-        this.toggleNominateButton = this.toggleNominateButton.bind(this)
-    }
-    
-
-    handleClick = () => {
-        if(this.props.nominate){   
-            this.props.nominate(this.props.movie);
-            this.toggleNominateButton();       
-            console.log( {nominate: this.state.disable, movie: this.props.movie} )
+    const handleClick = () => {
+        if(props.nominate){  
+            props.nominate(props.movie);
+            toggleNominateButton();
+            console.log( {nominate: isNominated, movie: props.movie} )
         } else {
-            this.props.remove(this.props.imdbID);
-            this.toggleNominateButton();
-            console.log( {remove: this.state.disable, movie: this.props.movie})
+            props.remove(props.imdbID);
+            toggleNominateButton()
+            console.log( {remove: isNominated, movie: props.movie})
             
         }
     }
 
-    toggleNominateButton = () => {
-
-        this.setState({ disable: !this.state.disable});
+    const toggleNominateButton = () => {
+        setIsNominated(!isNominated);
     }
     
-    render() {
-        console.log(this.props.nominated)
+        console.log(props.nominated)
         return (
             <div className='movie-card-result'>
-                <img className='movie-poster' src={this.props.poster} alt='movie poster'/>
+                <img className='movie-poster' src={props.poster} alt='movie poster'/>
                 <div className='title-button' >
                     <div className='movie-info'>
-                        <p>{this.props.title}</p>
-                        <p>({this.props.year})</p>
+                        <p id='title'>{props.title}</p>
+                        <p id='year'>({props.year})</p>
                     </div>
-                    {this.props.nominated 
+                    {props.nominated 
                     ? 
                     <button 
                     className='button'
                     id='remove-button'
                     name='remove'
-                    onClick={ this.handleClick }
+                    onClick={ handleClick }
                     >
                         Remove
                     </button>
@@ -56,8 +45,8 @@ export default class MovieCard extends Component {
                     className='button' 
                     id='nominate-button'
                     name='nominate' 
-                    onClick={ this.handleClick }
-                    disabled={ this.state.disable }
+                    onClick={ handleClick }
+                    disabled={ isNominated }
                     >
                         Nominate
                     </button>
@@ -65,5 +54,4 @@ export default class MovieCard extends Component {
                 </div>
             </div>
         )
-    }
 }
