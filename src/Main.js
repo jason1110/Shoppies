@@ -5,7 +5,7 @@ import Nominations from "./containers/Nominations"
 import { useAlert } from 'react-alert'
 import './Main.css'
 import Title from './assets/title.png'
-const baseURL = 'http://www.omdbapi.com'
+const baseURL = 'https://www.omdbapi.com'
 
 export default function Main() {
 
