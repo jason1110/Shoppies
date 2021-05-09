@@ -20,6 +20,9 @@ export default function Main() {
         fetch(`${baseURL}/?s=${search}&type=movie&apikey=583bc72a&`)
         .then((response) => response.json())
         .then(setMovies)
+        .catch(rejected => {
+            console.log(rejected)
+        });
     }
 
     useEffect(getMovieList, [search])
