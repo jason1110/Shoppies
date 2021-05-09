@@ -6,12 +6,12 @@ export default class MovieCard extends Component {
     constructor() {
         super();
         this.state = {
-          disable: false,
+            disable: false,
         };
     
         this.handleClick = this.handleClick.bind(this);
         this.toggleNominateButton = this.toggleNominateButton.bind(this)
-      }
+    }
     
 
     handleClick = () => {
@@ -28,38 +28,41 @@ export default class MovieCard extends Component {
     }
 
     toggleNominateButton = () => {
-       if(this.props.imdbID) 
+
         this.setState({ disable: !this.state.disable});
     }
     
-    // handleRemove = () => {
-    //     this.props.remove(this.props.imdbID)
-    //     this.toggleNominateButton.bind(this)
-    // }
     render() {
         console.log(this.props.nominated)
         return (
             <div className='movie-card-result'>
                 <img className='movie-poster' src={this.props.poster} alt='movie poster'/>
-                {this.props.title}
-                ({this.props.year})
-                {this.props.nominated 
-                ? 
-                <button name='remove'
-                onClick={ this.handleClick }
-                >
-                Remove
-                </button>
-                :<button 
-                className='nominate-button' 
-                name='nominate' 
-                onClick={ this.handleClick }
-                disabled={ this.props.nominated && !this.props.nominated.find(this.props.movie.imdbID === this.props.nominated.imdbID) ? true : false }
-                >
-                Nominate
-                </button>
-                }
-
+                <div className='title-button' >
+                    <div className='movie-info'>
+                        <p>{this.props.title}</p>
+                        <p>({this.props.year})</p>
+                    </div>
+                    {this.props.nominated 
+                    ? 
+                    <button 
+                    className='button'
+                    id='remove-button'
+                    name='remove'
+                    onClick={ this.handleClick }
+                    >
+                        Remove
+                    </button>
+                    :<button 
+                    className='button' 
+                    id='nominate-button'
+                    name='nominate' 
+                    onClick={ this.handleClick }
+                    disabled={ this.state.disable }
+                    >
+                        Nominate
+                    </button>
+                    }
+                </div>
             </div>
         )
     }

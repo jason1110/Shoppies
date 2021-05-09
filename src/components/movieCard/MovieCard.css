@@ -3,19 +3,126 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    background-color: #008060;
-    box-shadow: 5px 5px 5px rgb(106, 105, 105);
+    background-color: #D9E6C3;
+    box-shadow: 5px 5px 5px #575C4E;
     border-radius: 10px;
     border-style: solid;
     border-width: 1.5px;
-    margin: 20px 20px 20px 0px;
-    padding: 1em;
-    width: 90%;
-    height: 15vh;
+    margin: 20px 20px 20px 20px;
+    padding: 40px;
+    max-width: 75%;
+    width: 100%;
+    height: 20vh;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+}
+
+@keyframes fadeIn {
+    from{
+        opacity: 0
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.title-button {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-info{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 10px;
+}
+
+p {
+    display: flex;
+    margin: 5px;
+    flex-wrap: nowrap;
+}
+
+
+button {
+    display: inline-flexbox;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid #FFFFFF;
+    margin: auto;
+    margin-top: 3rem;
+    margin-left: 9rem;
+    border-radius: 1em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: #FFFFFF;
+    background-color: #94bd47;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+button:disabled {
+    display: inline-flexbox;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid #FFFFFF;
+    margin: auto;
+    margin-top: 3rem;
+    margin-left: 9rem;
+    border-radius: 1em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    background-color: #68872F;
+    opacity: 50%;
+    text-align: center;
+}
+
+button:hover{
+    color:#000000;
+    background-color:#FFFFFF;
+    cursor: pointer;
+}
+
+button:disabled:hover {
+    color: white;
+    background-color: #68872F;
+    cursor: not-allowed;
+}
+
+#remove-button {
+    display: inline-flexbox;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid #FFFFFF;
+    margin: auto;
+    margin-top: 3rem;
+    margin-left: 9rem;
+    border-radius: 1em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: #FFFFFF;
+    background-color: red;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+@media all and (max-width:30em){
+     button{
+        display:flex;
+        margin:0.4em auto;
+    }
 }
 
 .movie-poster {
-   display: flex;
-   max-height: 8em;
-   padding: 10px;
+    display: flex;
+    max-height: 8em;
+    padding: 10px 30px 10px 0px;
 }

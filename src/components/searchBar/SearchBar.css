@@ -2,17 +2,21 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 1rem;
+    padding: 1em;
     width: 75%;
-    background-color: azure;
+    background-color: #EDF3E2;
     margin: 2rem;
     box-shadow: 5px 5px 5px rgb(106, 105, 105);
     font-size: 20px;
+    color: #575C4E;
+    font-weight: 600;
     border-radius: 10px;
+    
   }
   
   input#search {
-    width: 96%;
+    max-width: 95%;
+    width: 95%;
     height: 30px;
     border-radius: 5px;
     border-width: 1px;
@@ -23,9 +27,12 @@
     padding-left: 40px;
     background-color: #fff;
     border: 1px solid #000;
-    box-shadow: none;    
+    box-shadow: none;
   }
+
+
 
   label {
       padding-left: 10px;
   }
+

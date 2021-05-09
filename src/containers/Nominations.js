@@ -29,10 +29,10 @@ export default function Nominations(props) {
         <>
         {(props.nominated !== [])
         ? <div className='container' id='nominations-container'>
-        {props.toggleNominations()}
+        <h2> Your Nominations</h2>
         {showNominations()}
         </div>
-        :null 
+        : null
         }
         </>
     )

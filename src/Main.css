@@ -1,25 +1,38 @@
 
 .main {
-    background-color: white;
-    height: 100vh;
+    background-color: #f6f9f1;
     width: 100%;
     margin: 0;
     display: flex;
     align-items: center;
     flex-direction: column;
+    position: absolute;
 }
 
+
+ h2 {
+     color: #575C4E;
+ }
 .title {
-    display: flex;
+    width: 100%;
+    text-align: center;
+    align-content: center;
     margin: 0;
     padding: 50px;
-    background-color: rgb(21, 54, 21);
+    /* background-color: #c3de92; */
+    background-image: linear-gradient(to bottom, #B2D572, #c3de92, #d0e5aa, #dcecc2, #e9f2d9, #f6f9f1);
 }
 
 .results-container {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+}
+
+.placeholder {
+    color: #4f652a;
+    opacity: 35%;
+    margin-top: -20px;
 }
 
 .results-hidden {

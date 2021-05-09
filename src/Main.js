@@ -17,7 +17,7 @@ export default function Main() {
     const alert = useAlert()
 
     const getMovieList = () => {
-        fetch(`${baseURL}/?s=${search}&apikey=583bc72a&`)
+        fetch(`${baseURL}/?s=${search}&type=movie&apikey=583bc72a&`)
         .then((response) => response.json())
         .then(setMovies)
     }
@@ -33,14 +33,14 @@ export default function Main() {
 
     const toggleSearchResults = () => {
         if (search) {
-            return  <h2> Search result for "{search}" </h2>
+            return  <h2> Search results for "{search}" </h2>
         }
     }
 
     const addNomination = (nomination) => {
         console.log(nominated)
         if (nominated.length === 5) {
-            return alert.show('Sorry you can only have five nominations at a time')
+            return alert.show('You have 5 nominations selected already')
         } else {
             setNominated([...nominated, nomination])
             let chosenMovie = filteredMovies.Search.find(myMovie => nomination.key === myMovie.imdbID)
@@ -52,7 +52,7 @@ export default function Main() {
 
     const toggleNominations = () => {
         if (search) {
-            return  <h2> Nominations </h2>
+            return  <h2> Your Nominations </h2>
         }
     }
 
@@ -64,12 +64,14 @@ export default function Main() {
         }
     }
 
+    console.log(nominated)
+
     return (
         <div className='main'>
             <h1 className='title'><img id='title' src={Title} alt='The Shoppies title'/></h1>
-            <SearchBar className='search-bar' filterMovies={filterMovies}/>
-            <div className={search ?'results-container' : 'results-hidden'}>
-                <div className='search-results-container'>
+            <SearchBar className='search-bar' filterMovies={filterMovies} />
+            <div className='results-container'>
+                <div className= {search ? 'search-results-container' : 'results-hidden'}>
                     <FilteredMovies 
                     filteredMovies={filteredMovies} 
                     toggleSearch={toggleSearchResults}
@@ -79,7 +81,7 @@ export default function Main() {
                     
                     />
                 </div>
-                <div className='nominations-container'>
+                <div className={ (nominated.length !== 0) ? 'nominations-container' : 'results-hidden'}>
                     <Nominations 
                     nominated={nominated}
                     remove={removeNomination}
@@ -88,6 +90,9 @@ export default function Main() {
                     setIsNominated={setIsNominated}     
                     />
                 </div>
+            </div>
+            <div className={!search && (nominated.length === 0) ? 'placeholder' : 'results-hidden'}>
+                <h1> Search for your top 5 favorite movies to nominate!</h1>
             </div>
         </div>
     )
