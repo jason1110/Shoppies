@@ -6,9 +6,11 @@ import { useAlert } from 'react-alert'
 import './Main.css'
 import Title from './assets/title.png'
 const baseURL = 'https://www.omdbapi.com'
+const apiKey = (process.env.REACT_APP_API_KEY)
 
 export default function Main() {
 
+    console.log(apiKey)
     const [filteredMovies, setFilteredMovies] = useState([])
     const [movies, setMovies] = useState([]);
     const [search, setSearch] = useState('')
@@ -17,7 +19,7 @@ export default function Main() {
     const alert = useAlert()
 
     const getMovieList = () => {
-        fetch(`${baseURL}/?s=${search}&type=movie&apikey=583bc72a&`)
+        fetch(`${baseURL}/?s=${search}&type=movie&apikey=${apiKey}&`)
         .then((response) => response.json())
         .then(setMovies)
         .catch(rejected => {
